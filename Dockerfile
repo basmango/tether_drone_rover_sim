@@ -73,13 +73,14 @@ RUN git clone https://github.com/gazebosim/ros_gz.git -b humble ~/ros2_ws/src/ro
 RUN /bin/bash -c "cd /root/ros2_ws && rosdep install -r --from-paths src -i -y --rosdistro humble"
 RUN /bin/bash -c "source /opt/ros/humble/setup.bash && cd ~/ros2_ws/ && colcon build --symlink-install "
 RUN echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
-RUN echo "export GZ_SIM_RESOURCE_PATH=~/.gz/models" >> ~/.bashrc
+RUN echo "export GZ_SIM_RESOURCE_PATH='~/.gz/models;/root/PX4-Autopilot/Tools/simulation/gz/worlds;/root/PX4-Autopilot/Tools/simulation/gz/models'" >> ~/.bashrc
 
 
-RUN rm -rf /root/PX4-Autopilot/Tools/simulation/gz/worlds /root/PX4-Autopilot/Tools/simulation/gz/models/x500_depth
+RUN rm -rf /root/PX4-Autopilot/Tools/simulation/gz/worlds 
+RUN rm -rf /root/PX4-Autopilot/Tools/simulation/gz/models/x500_depth
 COPY x500_depth /root/PX4-Autopilot/Tools/simulation/gz/models/x500_depth
 COPY worlds /root/PX4-Autopilot/Tools/simulation/gz/worlds
-COPY assets/7x7_1000-29.jpg /root/PX4-Autopilot/Tools/simulation/gz/worlds/materials/textures/7x7_1000-29.jpg
+#COPY assets/7x7_1000-29.jpg /root/PX4-Autopilot/Tools/simulation/gz/worlds/materials/textures/7x7_1000-29.jpg
 COPY .gz /root/.gz
 COPY entrypoint.sh /root/entrypoint.sh
 RUN chmod +x /root/entrypoint.sh

@@ -12,7 +12,7 @@ xterm -e "cd ~/PX4-Autopilot && PX4_SYS_AUTOSTART=4002  PX4_GZ_MODEL=x500_depth 
 source /opt/ros/humble/setup.bash && source ~/ros2_ws/install/setup.bash && cd ~/scripts &&  python3 aruco_detect.py &
 
 # Terminal #5
-xterm -e "source /opt/ros/humble/setup.bash && source ~/ros2_ws/install/setup.bash && sleep 12 && cd ~/scripts && python3 controller.py --takeoff & exec bash" &
+xterm -e "source /opt/ros/humble/setup.bash && source ~/ros2_ws/install/setup.bash && sleep 15 && cd ~/scripts && python3 controller.py --takeoff & exec bash" &
 
 
 # Keep the script running to keep the terminals open
